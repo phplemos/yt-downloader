@@ -1,10 +1,12 @@
-import { View, Text } from "react-native";
+import { View, Text, SafeAreaView } from "react-native";
+import DownloadCard from "@/components/DownloadCard";
+
 export default function Home() {
   return (
     <>
-      <View className="flex-1 justify-center items-center">
-        <Text>Hello World</Text>
-      </View>
+      <SafeAreaView className="flex-1 justify-between p-4">
+        <DownloadCard />
+      </SafeAreaView>
     </>
   );
 }
