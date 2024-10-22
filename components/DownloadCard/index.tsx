@@ -31,7 +31,7 @@ const DownloadCard: React.FC = () => {
   };
 
   return (
-    <View className="bg-white rounded-lg p-4 m-2 shadow-md">
+    <View className="bg-white rounded-lg p-4 shadow-xl">
       <Text className="text-lg font-bold mb-2">Download de Arquivo</Text>
       <TextInput
         className="border !border-gray-300 rounded-md p-2 mb-4"

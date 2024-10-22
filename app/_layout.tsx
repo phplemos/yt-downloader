@@ -5,8 +5,21 @@ import "../constants/global.css";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import Drawer from "expo-router/drawer";
 import CustomDrawer from "@/components/CustomDrawer";
+import { useState } from "react";
 
-export default function RootLayout(children: any) {
+// Usuario não logado
+function StackLayout() {
+  return (
+    <>
+      <Stack>
+        <Stack.Screen name="login" />
+      </Stack>
+    </>
+  );
+}
+
+// Usuario logado
+function DrawerLayout({ children }: any) {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <Drawer
@@ -14,22 +27,27 @@ export default function RootLayout(children: any) {
         screenOptions={{
           headerShown: true,
           headerStyle: {
-            backgroundColor: "#f4511e",
+            backgroundColor: "#439cee",
           },
           headerTintColor: "#fff",
           headerTitleStyle: {
-            fontWeight: "bold",
+            fontWeight: "regular",
           },
         }}
       >
         <Drawer.Screen
-          name="index" // This is the name of the page and must match the url from root
+          name="home" // This is the name of the page and must match the url from root
           options={{
             drawerLabel: "Home",
-            title: "overview",
+            title: "Inicio",
           }}
         />
       </Drawer>
     </GestureHandlerRootView>
   );
+}
+
+// Layout principal
+export default function RootLayout(children: any) {
+  return <StackLayout />;
 }
