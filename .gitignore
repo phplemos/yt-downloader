@@ -44,5 +44,3 @@ expo-env.d.ts
 # babel
 babel.config.js
 
-# tailwind
-tailwind.config.js
