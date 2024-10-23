@@ -2,14 +2,14 @@ import { useContext, createContext, type PropsWithChildren } from "react";
 import { useEffect, useCallback, useReducer } from "react";
 import * as SecureStore from "expo-secure-store";
 import { Platform } from "react-native";
-
+import { router } from "expo-router";
 const AuthContext = createContext<{
-  signIn: () => void;
+  signIn: (email: string, password: string) => void;
   signOut: () => void;
   session?: string | null;
   isLoading: boolean;
 }>({
-  signIn: () => null,
+  signIn: () => false,
   signOut: () => null,
   session: null,
   isLoading: false,
@@ -30,13 +30,21 @@ export function useSession() {
 export function SessionProvider({ children }: PropsWithChildren) {
   const [[isLoading, session], setSession] = useStorageState("session");
 
+  function SignIn(email: string, password: string) {
+    if (email === "admin" && password === "admin") {
+      router.push("/");
+      setSession("admin");
+    }
+  }
+
+  function SignOut() {
+    setSession(null);
+  }
+
   return (
     <AuthContext.Provider
       value={{
-        signIn: () => {
-          // Perform sign-in logic here
-          setSession("xxx");
-        },
+        signIn: SignIn,
         signOut: () => {
           setSession(null);
         },

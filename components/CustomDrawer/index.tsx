@@ -1,6 +1,8 @@
 import React from "react";
 import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { router } from "expo-router";
+import { useSession } from "../../context/loginContext";
 
 interface DrawerItemProps {
   icon: string;
@@ -29,6 +31,7 @@ const CustomDrawer: React.FC<CustomDrawerProps> = ({
   userPhoto,
   userEmail,
 }) => {
+  const { signOut } = useSession();
   const handleLogout = () => {
     // Implemente sua lógica de logout aqui
     console.log("Logout");
@@ -60,7 +63,7 @@ const CustomDrawer: React.FC<CustomDrawerProps> = ({
           <DrawerItem
             icon="home-outline"
             label="Início"
-            onPress={() => navigation.navigate("Home")}
+            onPress={() => router.replace("/")}
           />
           <DrawerItem
             icon="search-outline"
@@ -84,7 +87,7 @@ const CustomDrawer: React.FC<CustomDrawerProps> = ({
       <View className="border-t border-gray-200 p-4">
         <TouchableOpacity
           className="flex-row items-center justify-center bg-red-500 px-4 py-3 rounded-md"
-          onPress={handleLogout}
+          onPress={signOut}
         >
           <Ionicons name="log-out-outline" size={24} color="white" />
           <Text className="ml-3 text-base font-semibold text-white">

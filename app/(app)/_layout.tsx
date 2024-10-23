@@ -1,7 +1,8 @@
-import { Text } from 'react-native';
-import { Redirect, Stack } from 'expo-router';
-
+import { Text } from "react-native";
+import { Redirect } from "expo-router";
+import Drawer from "expo-router/drawer";
 import { useSession } from "../../context/loginContext";
+import CustomDrawer from "@/components/CustomDrawer";
 
 export default function AppLayout() {
   const { session, isLoading } = useSession();
@@ -20,5 +21,9 @@ export default function AppLayout() {
   }
 
   // This layout can be deferred because it's not the root layout.
-  return <Stack />;
+  return (
+    <Drawer initialRouteName="home" drawerContent={CustomDrawer}>
+      <Drawer.Screen name="recentes" />
+    </Drawer>
+  );
 }
